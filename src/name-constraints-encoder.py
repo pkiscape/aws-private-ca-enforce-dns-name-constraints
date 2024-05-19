@@ -92,9 +92,8 @@ def create_api_passthrough_json(encoded, output_file_name="api_passthrough_confi
     data_json["Extensions"]["CustomExtensions"][0]["Value"] = encoded.decode("utf-8")
     data_json["Extensions"]["CustomExtensions"][0]["Critical"] = True
 
-    file = open(output_file_name, "w")
-    json.dump(data_json, file, indent=4)  # include indent for pretty-print
-    file.close()
+    with open(output_file_name, "w", encoding="utf-8") as file:
+        json.dump(data_json, file, indent=4) # include indent for pretty-print
 
     logging.info(f"API Passthrough File Created: {output_file_name}")
 
